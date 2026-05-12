@@ -276,6 +276,24 @@ public class Point3D {
     }
     
     /**
+     * Subtracts another point from this point, treating both as vectors.
+     *
+     * This method is useful for computing direction vectors and performing
+     * geometric operations such as projection, distance, and rotation.
+     *
+     * @param other the point to subtract
+     * @return a new Point3D representing the vector difference, or null if other is null
+     */
+    public Point3D subtract(Point3D other) {
+        if (other == null) {
+            logger.log(Level.WARNING, "Attempted to subtract null point from ({0}, {1}, {2})",
+                       new Object[]{x, y, z});
+            return null;
+        }
+        return new Point3D(x - other.x, y - other.y, z - other.z);
+    }
+    
+    /**
      * Scales this point by the specified factor relative to the origin.
      * 
      * Scaling multiplies each coordinate by the scale factor. This is useful for
